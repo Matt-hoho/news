@@ -12,15 +12,29 @@
 
     <!-- 用户名 -->
     <div class="user_name">
-      <AuthInput placeholder="请输入用户名/手机号码" v-model="form.username" :rule="/^1[0-9]{4,10}$/" err_message="用户名或手机号错误"></AuthInput>
+      <AuthInput
+        placeholder="请输入用户名/手机号码"
+        v-model="form.username"
+        :rule="/^1[0-9]{4,10}$/"
+        err_message="用户名或手机号错误"
+      ></AuthInput>
     </div>
 
     <!-- 密码> -->
     <div class="password">
-      <AuthInput placeholder="请输入密码" type="password" v-model="form.password" :rule="/^[\w]{3,16}$/" err_message="密码错误"></AuthInput>
+      <AuthInput
+        placeholder="请输入密码"
+        type="password"
+        v-model="form.password"
+        :rule="/^[\w]{3,16}$/"
+        err_message="密码错误"
+      ></AuthInput>
     </div>
 
-    <p class="tips">没有账号？<router-link to="/register">去注册</router-link> </p>
+    <p class="tips">
+      没有账号？
+      <router-link to="/register">去注册</router-link>
+    </p>
 
     <!-- 登录按钮 -->
     <div class="btn">
@@ -45,20 +59,22 @@ export default {
       }
     };
   },
-  methods:{
-    handleSubmit(){
+  methods: {
+    handleSubmit() {
       axios({
         url: "/login",
         method: "POST",
         data: this.form
-      }).then( res => {
-        const {message,data} = res.data
-        localStorage.setItem("token",data.token)
-        localStorage.setItem("id",data.user.id)
-        if(message ==="登录成功"){
-            this.$router.push("/admin")
+      }).then(res => {
+        const { message, data } = res.data;
+        if (data &&data.token) {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("id", data.user.id);
         }
-      })
+        if (message === "登录成功") {
+          this.$router.push("/admin");
+        }
+      });
     }
   },
   components: {
@@ -85,14 +101,14 @@ export default {
       color: #d81e06;
     }
   }
-  .btn{
+  .btn {
     margin-top: 20px;
   }
-  .tips{
+  .tips {
     text-align: right;
     // margin: 20px;
-    a{
-      color:#3990dd;
+    a {
+      color: #3990dd;
     }
   }
 }
