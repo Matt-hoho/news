@@ -17,7 +17,7 @@
 
     <!-- 密码> -->
     <div class="password">
-      <AuthInput placeholder="请输入密码" type="password" v-model="form.password" :rule="/[0-9,a-z,A-Z]{3,10}/" err_message="密码错误"></AuthInput>
+      <AuthInput placeholder="请输入密码" type="password" v-model="form.password" :rule="/^[\w]{3,16}$/" err_message="密码错误"></AuthInput>
     </div>
 
     <p class="tips">没有账号？<router-link to="/register">去注册</router-link> </p>
@@ -47,7 +47,6 @@ export default {
   },
   methods:{
     handleSubmit(){
-
       axios({
         url: "/login",
         method: "POST",  // method相当于type
@@ -59,7 +58,6 @@ export default {
         if(message ==="登录成功"){
             this.$router.push("/")
         }
-        
       })
     }
   },

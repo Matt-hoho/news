@@ -32,7 +32,10 @@ a{
 a:hover{
     text-decoration: none;
 }
-
+input{
+    outline: none;
+    border: none;
+}
 ul,li,ol{
     list-style: none;
 }

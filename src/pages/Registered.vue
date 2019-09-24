@@ -36,7 +36,7 @@
         placeholder="请输入密码"
         type="password"
         v-model="form.password"
-        :rule="/[0-9a-zA-Z]{3,10}/"
+        :rule="/[\w]{3,16}/"
         err_message="请输入合法的密码"
       ></AuthInput>
     </div>
@@ -80,7 +80,6 @@ export default {
         // .then的回调函数相当于success
       }).then(res => {
         const { message } = res.data;
-
         if (message === "注册成功") {
           this.$router.push("/login");
         }
