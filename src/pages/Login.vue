@@ -53,10 +53,11 @@ export default {
         data: this.form
         // .then的回调函数相当于success
       }).then( res => {
-        const {message} = res.data
-
+        const {message,data} = res.data
+        localStorage.setItem("token",data.token)
+        localStorage.setItem("id",data.user.id)
         if(message ==="登录成功"){
-            this.$router.push("/")
+            this.$router.push("/admin")
         }
       })
     }

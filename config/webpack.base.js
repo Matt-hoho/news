@@ -1,5 +1,5 @@
 const path = require("path");
-
+const CopyPlugin = require("copy-webpack-plugin");
 //  导入提取样式的webpack插件
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
@@ -89,7 +89,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "public/index.html"	// template指定默认html模板
         }),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new CopyPlugin([
+            { from: 'static', to: 'static' },
+        ]),
     ]
 
 }

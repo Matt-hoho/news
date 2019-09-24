@@ -1,12 +1,12 @@
 <template>
   <div>
         <div class="profile">
-            <img src="http://img1.imgtn.bdimg.com/it/u=2357912857,682090914&fm=26&gp=0.jpg" alt="">
+            <img :src="file.head_img" alt="">
 
             <div class="profile-center">
                 <div class="name">
                     <span class="iconfont iconxingbienan"></span>
-                    火星网友
+                    
                 </div>
                 <div class="time">
                     2019-9-24
@@ -20,7 +20,7 @@
         <CellBar label="我的关注" text="关注的用户"/>
         <CellBar label="我的跟帖" text="跟帖/回复"/>
         <CellBar label="我的收藏" text="文章/视频"/>
-        <CellBar label="退出"/>
+        <CellBar label="退出" @click="handleLoginOut"/>
   </div>
 </template>
 
@@ -28,8 +28,39 @@
 import CellBar from "@/components/CellBar"
 
 export default {
+    data(){
+        return{
+            file:{}
+        }
+    },
     components:{
         CellBar
+    },
+    methods:{
+        handleLoginOut(){
+            localStorage.removeItem("token");
+            localStorage.removeItem("id");
+            this.$router.replace("/login");
+
+        }
+    },
+    mounted(){
+        this.$axios({
+            url:"/user/" + localStorage.getItem("id"),
+            headers: {
+                Authorization: localStorage.getItem("token")
+            }
+        }).then(res=>{
+            const {data} = res.data;
+            this.file = data;
+            console.log(data);
+            
+            if(data.head_img){
+                this.file.head_img = this.$axios.defaults.baseURL + data.head_img;
+            }else{
+                this.file.head_img = "../static/default.jpg"
+            }
+        })
     }
 }
 </script>
