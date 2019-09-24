@@ -3,8 +3,8 @@
     type="text"
     class="input"
     :class="{
-            success:status ==='success',
-            error:status === 'error'
+          success:status ==='success',
+          error:status === 'error'
         }"
     :placeholder="placeholder"
     :value="value"
@@ -32,6 +32,7 @@ export default {
           this.status = "error";
         }
       }
+      
     },
     handleChange() {
       if (this.err_message && this.status === "error") {

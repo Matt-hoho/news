@@ -49,9 +49,8 @@ export default {
     handleSubmit(){
       axios({
         url: "/login",
-        method: "POST",  // method相当于type
+        method: "POST",
         data: this.form
-        // .then的回调函数相当于success
       }).then( res => {
         const {message,data} = res.data
         localStorage.setItem("token",data.token)
