@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="profile">
+    <div class="profile" @click="$router.push('/edit')">
       <img :src="file.head_img" alt />
 
       <div class="profile-center">
@@ -15,8 +15,8 @@
     </div>
 
     <!-- 调用条形组件 -->
-    <CellBar label="我的关注" text="关注的用户" />
-    <CellBar label="我的跟帖" text="跟帖/回复" />
+    <CellBar label="我的关注" text="关注的用户" @click="$router.push('/myfollow')"/>
+    <CellBar label="我的跟帖" text="跟帖/回复" @click="$router.push('/mycomment')"/>
     <CellBar label="我的收藏" text="文章/视频" />
     <div class="btn">
       <AuthButton text="退出" @click="handleLoginOut"></AuthButton>
@@ -52,7 +52,7 @@ export default {
         Authorization: localStorage.getItem("token")
       }
     }).then(res => {
-        console.log(res);
+        // console.log(res);
       const { data } = res.data;
       this.file = data;
 

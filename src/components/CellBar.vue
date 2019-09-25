@@ -1,8 +1,8 @@
 <template>
-  <div class="cell-wrap"  @click="$emit('click', $event)">
+  <div class="cell-wrap" @click="$emit('click', $event)">
     <div class="cell">
       <span>{{label}}</span>
-      <i>{{text}}</i>
+      <i>{{type === 'password'?'******':text}}</i>
       <span class="iconfont iconjiantou1"></span>
     </div>
   </div>
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-    props:["label","text"]
+  props: ["label", "text", "type"]
 };
 </script>
 

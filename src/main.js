@@ -3,16 +3,20 @@ import VueRouter from "vue-router";
 import axios from "axios";
 import Vant from 'vant';
 import {Toast} from "vant";
+import { ActionSheet } from 'vant';
 
 import Login from "@/pages/Login.vue"
 import Registered from "@/pages/Registered.vue"
 import Admin from "@/pages/Admin.vue"
-
+import Edit from "@/pages/Edit.vue"
+import Myfollow from "@/pages/Myfollow.vue"
+import Mycomment from "@/pages/Mycomment.vue"
 
 import App from "@/App"
 
 Vue.use(VueRouter)
 Vue.use(Vant)
+Vue.use(ActionSheet);
 
 // 绑定到原型
 Vue.prototype.$axios = axios;
@@ -23,6 +27,9 @@ const routes = [
     {path: "/login",component: Login},
     {path: "/register",component: Registered},
     {path: "/admin",component: Admin},
+    {path: "/edit",component: Edit},
+    {path: "/myfollow",component: Myfollow},
+    {path: "/mycomment",component: Mycomment},
 ]
 
 const router = new VueRouter({
@@ -32,7 +39,7 @@ const router = new VueRouter({
 router.beforeEach((to,from,next)=>{
     const token = localStorage.getItem("token")
 
-    if(to.path === "/admin"){
+    if(to.path === "/admin"|| to.path ==="/edit" ||to.path ==="/myfollow" ||to.path ==="/mycomment"){
         if(token){
             return next();
         }else{
