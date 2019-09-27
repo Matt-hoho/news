@@ -32,16 +32,13 @@ export default {
   mounted() {
     this.$axios({
       url: "/user_comments",
-      // 添加头信息
       headers: {
         Authorization: localStorage.getItem("token")
       }
     }).then(res => {
       const { data } = res.data;
-
-      // 保存到data中
       this.list = data;
-      console.log(this.list);
+      // console.log(this.list);
     });
   }
 };

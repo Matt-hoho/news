@@ -60,7 +60,8 @@ export default {
     afterRead(file) {
       const formData = new FormData();
       formData.append("file", file.file);
-
+      console.log(formData);
+      
       this.$axios({
         url: "/upload",
         method: "POST",
@@ -70,6 +71,7 @@ export default {
         data: formData
       }).then(res => {
         const { data } = res.data;
+        
         this.file.head_img = this.$axios.defaults.baseURL + data.url;
         this.editFile({ head_img: data.url });
       });

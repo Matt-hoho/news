@@ -72,7 +72,7 @@ export default {
           localStorage.setItem("id", data.user.id);
         }
         if (message === "登录成功") {
-          this.$router.push("/admin");
+          this.$router.push("/");
         }
       });
     }

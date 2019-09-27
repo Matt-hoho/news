@@ -1,9 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import axios from "axios";
+
 import Vant from 'vant';
 import {Toast} from "vant";
 import { ActionSheet } from 'vant';
+import { Tab, Tabs } from 'vant';
+import { List } from 'vant';
 
 import Login from "@/pages/Login.vue"
 import Registered from "@/pages/Registered.vue"
@@ -12,12 +15,16 @@ import Edit from "@/pages/Edit.vue"
 import Myfollow from "@/pages/Myfollow.vue"
 import Mycomment from "@/pages/Mycomment.vue"
 
+
+import Index from "@/pages/Index.vue"
+
 import App from "@/App"
 
 Vue.use(VueRouter)
 Vue.use(Vant)
 Vue.use(ActionSheet);
-
+Vue.use(Tab).use(Tabs);
+Vue.use(List);
 // 绑定到原型
 Vue.prototype.$axios = axios;
 
@@ -30,6 +37,7 @@ const routes = [
     {path: "/edit",component: Edit},
     {path: "/myfollow",component: Myfollow},
     {path: "/mycomment",component: Mycomment},
+    {path: "/",component: Index},
 ]
 
 const router = new VueRouter({
