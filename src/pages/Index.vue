@@ -38,7 +38,7 @@ export default {
       categories: [],
       cid: 999,
       pageIndex: 1,
-      pageSize: 8
+      pageSize: 5
     };
   },
   watch: {
@@ -60,11 +60,11 @@ export default {
           if (data.length < this.pageSize) {
             categories.finished = true;
           }
-            categories.posts = [...categories.posts,...data]
+          categories.posts = [...categories.posts, ...data];
           categories.pageIndex++;
           categories.loading = false;
         });
-      }, 500);
+      }, 2000);
     }
   },
   components: {
