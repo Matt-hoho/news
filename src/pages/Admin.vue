@@ -52,7 +52,6 @@ export default {
         Authorization: localStorage.getItem("token")
       }
     }).then(res => {
-        // console.log(res);
       const { data } = res.data;
       this.file = data;
 

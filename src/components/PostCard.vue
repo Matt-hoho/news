@@ -11,20 +11,20 @@
         </p>
       </div>
       <router-link :to="`/post_detail/${post.id}`">
-      <div class="card-img">
-        <img :src="post.cover[0].url" alt />
-      </div>
+        <div class="card-img">
+          <img :src="post.cover[0].url" alt />
+        </div>
       </router-link>
     </div>
 
     <div class="img-cart" v-if="post.cover.length >= 3">
       <router-link :to="`/post_detail/${post.id}`">
-      <div class="post-title">{{post.title}}</div>
+        <div class="post-title">{{post.title}}</div>
       </router-link>
       <router-link :to="`/post_detail/${post.id}`">
-      <div class="img-list">
-        <img v-for="(item, index) in post.cover" :key="index" :src="item.url" v-if="index < 3" />
-      </div>
+        <div class="img-list">
+          <img v-for="(item, index) in post.cover" :key="index" :src="item.url" v-show="index < 3" />
+        </div>
       </router-link>
       <p class="post-info">
         <span>{{post.user.nickname}}</span>
@@ -34,15 +34,15 @@
 
     <div class="video-cart" v-if="post.type === 2 && post.cover.length === 1">
       <router-link :to="`/post_detail/${post.id}`">
-      <div class="post-title">{{post.title}}</div>
+        <div class="post-title">{{post.title}}</div>
       </router-link>
       <router-link :to="`/post_detail/${post.id}`">
-      <div class="video">
-        <img :src="post.cover[0].url" alt />
-        <span class="video-layer">
-          <i class="iconfont iconshipin"></i>
-        </span>
-      </div>
+        <div class="video">
+          <img :src="post.cover[0].url" alt />
+          <span class="video-layer">
+            <i class="iconfont iconshipin"></i>
+          </span>
+        </div>
       </router-link>
       <p class="post-info">
         <span>{{post.user.nickname}}</span>
@@ -54,7 +54,14 @@
 
 <script>
 export default {
-  props: ["post"]
+  props: ["post"],
+  mounted() {
+    this.post.cover.forEach(item => {
+      if (item.url.indexOf("http") === -1) {
+        item.url = this.$axios.defaults.baseURL + item.url
+      }
+    });
+  }
 };
 </script>
 

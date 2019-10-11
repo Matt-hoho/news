@@ -116,7 +116,7 @@ export default {
     },
     handleStar() {
       this.$axios({
-        url: "/post_star/" + this.detail.user.id,
+        url: "/post_star/" + this.detail.id,
         headers: {
           Authorization: localStorage.getItem("token")
         }

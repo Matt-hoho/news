@@ -3,10 +3,12 @@
     <!-- 搜索栏 -->
     <div class="index-header">
       <span class="iconfont iconnew logo"></span>
-      <div class="index-search">
-        <span class="iconfont iconsearch"></span>
-        <i>搜索新闻</i>
-      </div>
+      <router-link to="/search" class="link-search">
+        <div class="index-search">
+          <span class="iconfont iconsearch"></span>
+          <i>搜索新闻</i>
+        </div>
+      </router-link>
       <router-link to="/admin">
         <span class="iconfont iconwode personal"></span>
       </router-link>
@@ -116,7 +118,7 @@ export default {
   .logo {
     font-size: 40px;
   }
-  .index-search {
+  .link-search {
     display: flex;
     justify-content: center;
     align-items: center;

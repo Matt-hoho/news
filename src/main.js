@@ -18,6 +18,8 @@ import Mycomment from "@/pages/Mycomment.vue"
 
 import Index from "@/pages/Index.vue"
 import Post_detail from "@/pages/Post_detail.vue"
+import Comment from "@/pages/comment/Index.vue";
+import Search from "@/pages/Search";
 
 
 import App from "@/App"
@@ -41,6 +43,8 @@ const routes = [
     {path: "/mycomment",component: Mycomment,meta:{title:"我的跟帖"}},
     {path: "/",component: Index,meta:{title:"新闻首页"}},
     {path: "/post_detail/:id",component: Post_detail,meta:{title:"文章详情"}},
+    {path: "/post_comment/:id",component: Comment,meta:{title:"文章评论"}},
+    {path: "/search",component: Search,meta:{title:"搜索"}},
 ]
 
 const router = new VueRouter({

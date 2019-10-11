@@ -3,8 +3,8 @@
     <div class="foot-nomal" v-show="!isFocus">
       <input type="text" placeholder="写跟帖" @focus="handleFocus" />
 
-      <span class="post-comment">
-        <em>1020</em>
+      <span class="comment" @click="$router.push(`/post_comment/${post.id}`)">
+        <em>{{post.comment_length}}</em>
         <i class="iconfont iconpinglun-"></i>
       </span>
       <i
@@ -110,7 +110,7 @@ export default {
       padding: 0 5px;
       color: #fff;
       top: -5px;
-      left: 5px;
+      left: 15px;
     }
   }
   .star_active {
